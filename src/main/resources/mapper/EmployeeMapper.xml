@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sjxy.employee.dao.EmployeeMapper">
+	<insert id="saveEmployee" parameterType="cn.sjxy.employee.domain.Employee">
+		insert into emp(eid,did,name,age,sex,address) values(#{eid},#{did},#{name},#{age},#{sex},#{address})
+	</insert>
+	
+	<select id="findAllEmployee" resultType="cn.sjxy.employee.domain.Employee">
+		select * from emp
+	</select>
+	
+	<delete id="deleteEmployeeByid" parameterType="String">
+		delete from emp where eid=#{eid}
+	</delete>
+	
+	<update id="updateEmpByEid" parameterType="cn.sjxy.employee.domain.Employee">
+		update emp set  did=#{department.did},name=#{name},age=#{age},sex=#{sex},address=#{address} where eid=#{eid}
+	</update>
+	
+	<select id="findById" parameterType="String"  resultType="cn.sjxy.employee.domain.Employee">
+		select * from emp where eid=#{eid}
+	</select>
+</mapper>

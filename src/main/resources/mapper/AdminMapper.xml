@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sjxy.employee.dao.AdminMapper">
+
+	<select id="login" parameterType="cn.sjxy.employee.domain.Admin" resultMap="lmap">
+		select email,password from admin 
+		where 
+		<if test="_parameter !=null">email=#{email}</if>
+		<if test="_parameter !=null">and password=#{password}</if>
+	</select>
+	
+	<resultMap type="cn.sjxy.employee.domain.Admin" id="lmap">
+		<id column="email" property="email"/>
+		<result column="password" property="password"/>
+	</resultMap>
+	
+	<select id="findByEmail" parameterType="String" resultType="cn.sjxy.employee.domain.Admin">
+		select * from admin where email=#{email}
+	</select>
+	
+	<update id="updateTime" parameterType="cn.sjxy.employee.domain.Admin" >
+		update admin set lastdate=sysdate() where email=#{email}
+	</update>
+	
+
+
+</mapper>
